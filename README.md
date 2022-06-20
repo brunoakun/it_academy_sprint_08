@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## 1.- Bootstrap
 - npm install bootstrap
 - npm install @popperjs/core 
-*In your angular.json Add bootstrap & popper (css+js) to your styles and scripts*
+-*In your angular.json Add bootstrap & popper (css+js) to your styles and scripts*
 ```
 "styles": [
   "src/scss/styles.scss",
