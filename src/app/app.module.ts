@@ -1,3 +1,4 @@
+import { DatosService } from './datos.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -18,7 +19,7 @@ import { NavesListComponent } from './naves-list/naves-list.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [DatosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

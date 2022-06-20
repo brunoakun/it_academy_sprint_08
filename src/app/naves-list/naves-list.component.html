@@ -1,1 +1,12 @@
-<p>naves-list works!</p>
+<div class="container mt-3">
+
+    <span *ngFor="let nave of arrayNaves; index as i; ">
+
+        <div class="card mb-2">
+            <div class="card-body">
+                <h4 class="card-title">{{nave.name}}</h4>
+                <p class="card-text"> {{nave.model}}</p>
+            </div>
+        </div>
+
+    </span>

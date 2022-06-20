@@ -39,3 +39,29 @@ export class AppRoutingModule { }
 <app-navbar></app-navbar>
 <router-outlet></router-outlet>
 ```
+## 3.- Crear un servicio
+- ng generate service datos
+```
+// Llamada asíncrona a la API dentro del servicio:
+  async getListaNaves() {
+    // Llenar el array de naves
+    const arrayNaves: any[] = [];
+    const respuesta = await fetch('http://swapi.dev/api/starships');
+    let ListadoNaves = await respuesta.json();
+
+    for (let nave of ListadoNaves.results) {
+      arrayNaves.push(nave);
+    }
+    return (arrayNaves);
+  }
+```
+- *registrarlo en app.module.ts*
+```
+...
+  providers: [DatosService],
+...
+```
+- *inyectarlo en los componenetes que lo usen*
+```
+  constructor(private datosSrv: DatosService) { }
+```

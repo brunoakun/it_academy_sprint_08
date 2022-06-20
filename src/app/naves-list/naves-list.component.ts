@@ -1,4 +1,6 @@
+import { DatosService } from './../datos.service';
 import { Component, OnInit } from '@angular/core';
+import { Nave } from '../nave.model';
 
 @Component({
   selector: 'app-naves-list',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./naves-list.component.css']
 })
 export class NavesListComponent implements OnInit {
+  arrayNaves: Nave[] = [];
 
-  constructor() { }
+  constructor(private datosSrv: DatosService) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.arrayNaves = await this.datosSrv.getListaNaves();
   }
 
 }
