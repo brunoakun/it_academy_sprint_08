@@ -1,6 +1,5 @@
 import { DatosService } from './../datos.service';
 import { Component, OnInit } from '@angular/core';
-import { Nave } from '../nave.model';
 
 @Component({
   selector: 'app-naves-list',
@@ -8,12 +7,20 @@ import { Nave } from '../nave.model';
   styleUrls: ['./naves-list.component.css']
 })
 export class NavesListComponent implements OnInit {
-  arrayNaves: Nave[] = [];
+  // PROPIEDADES
 
-  constructor(private datosSrv: DatosService) { }
+  // CONSTRUCTOR
+  constructor(public datosSrv: DatosService) { }
 
-  async ngOnInit() {
-    this.arrayNaves = await this.datosSrv.getListaNaves();
+  // METODOS
+  ngOnInit(): void {
+    // iniciar array de naves
+    this.datosSrv.getListaNaves();
+
+    // Suscribirse a la lista de naves, cada vez que exista un cambio, se añadirán los datos al array arrayNaves de datosSrv
+    this.datosSrv.getListaNaves$().subscribe(naves => {
+      this.datosSrv.arrayNaves.push(...naves.results);
+    })
   }
 
 }

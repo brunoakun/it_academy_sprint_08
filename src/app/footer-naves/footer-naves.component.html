@@ -1,0 +1,8 @@
+<div *ngIf="totalNavesCargadas">
+    <p>{{totalNavesCargadas}} Naves listadas</p>
+    <p>{{totalNaves}} Naves en Total</p>
+    <button [disabled]="!urlSiguiente" (click)="getMasNaves()">CARGAR MAS NAVES</button>
+</div>
+<div *ngIf="!totalNavesCargadas">
+    Cargando lista de naves...
+</div>

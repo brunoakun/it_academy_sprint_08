@@ -1,12 +1,16 @@
 <div class="container mt-3">
+    <h1>Listado de Naves:</h1>
+    <div #divListaNaves style='overflow-y: auto; '>
+        <span *ngFor="let nave of datosSrv.arrayNaves; index as i; ">
 
-    <span *ngFor="let nave of arrayNaves; index as i; ">
-
-        <div class="card mb-2">
-            <div class="card-body">
-                <h4 class="card-title">{{nave.name}}</h4>
-                <p class="card-text"> {{nave.model}}</p>
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h4 class="card-title">{{nave.name}}</h4>
+                    <p class="card-text"> {{nave.model}}</p>
+                </div>
             </div>
-        </div>
 
-    </span>
+        </span>
+    </div>
+    <app-footer-naves></app-footer-naves>
+</div>
