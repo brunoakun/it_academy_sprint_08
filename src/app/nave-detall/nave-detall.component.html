@@ -1,0 +1,31 @@
+<div class="container mt-3">
+
+    <div class="row">
+        <div class="col">
+            <div class=" text-center mb-3">
+                <img [src]="datosNave.foto" width="600" class="rounded" title="{{datosNave.name}}"
+                    alt="{{datosNave.name}}">
+            </div>
+            <h2 class="ms-4">{{datosNave.name}}</h2>
+        </div>
+    </div>
+
+    <div class="row ms-4 me-4">
+        <div class="col-6">
+            <p>Model: {{datosNave.model}}</p>
+            <p>Cost in credits: {{datosNave.cost_in_credits | number}}</p>
+            <p>Atmospheric speed: {{datosNave.max_atmosphering_speed | number}}</p>
+        </div>
+        <div class="col-6">
+            <p>Manufacturer: {{datosNave.manufacturer}}</p>
+            <p>Length: {{datosNave.length }}</p>
+            <p>Crew: {{datosNave.crew }}</p>
+        </div>
+    </div>
+
+
+
+    <div *ngIf="errorTxt" class="alert alert-warning border-3 " role="alert">
+        {{errorTxt}}
+    </div>
+</div>

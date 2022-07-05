@@ -9,17 +9,25 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NavesListComponent } from './naves-list/naves-list.component';
 import { FooterNavesComponent } from './footer-naves/footer-naves.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { NaveDetallComponent } from './nave-detall/nave-detall.component';
+import { LoginComponent } from './login/login.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NavbarComponent,
     NavesListComponent,
-    FooterNavesComponent
+    FooterNavesComponent,
+    NaveDetallComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [DatosService],
   bootstrap: [AppComponent]

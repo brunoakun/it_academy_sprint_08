@@ -1,8 +1,8 @@
-<div *ngIf="totalNavesCargadas">
-    <p>{{totalNavesCargadas}} Naves listadas</p>
-    <p>{{totalNaves}} Naves en Total</p>
-    <button [disabled]="!urlSiguiente" (click)="getMasNaves()">CARGAR MAS NAVES</button>
+<div *ngIf="(!totalNavesCargadas) || (!apiFin)" class="alert alert-success border-2 mb-2" role="alert">
+    Cargando naves...
 </div>
-<div *ngIf="!totalNavesCargadas">
-    Cargando lista de naves...
+
+<p><i>{{totalNavesCargadas}} Naves listadas - {{totalNaves}} Naves en Total</i></p>
+<div *ngIf="totalNavesCargadas < totalNaves" class="mb-2">
+    <button *ngIf="apiFin" [disabled]="!datosSrv.urlSiguiente" (click)="getMasNaves()">CARGAR MAS NAVES</button>
 </div>

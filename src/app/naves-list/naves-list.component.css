@@ -1,0 +1,14 @@
+.card {
+    background-color: rgb(59, 59, 59);
+    border: none !important;
+    border-radius: 5px;
+}
+
+.card a {
+    color: rgb(173, 173, 173) !important;
+    text-decoration: none;
+}
+
+.card a :hover {
+    color:whitesmoke;
+}

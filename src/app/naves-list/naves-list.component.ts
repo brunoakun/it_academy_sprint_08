@@ -8,19 +8,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavesListComponent implements OnInit {
   // PROPIEDADES
+  errorApi: string = '';
+
 
   // CONSTRUCTOR
   constructor(public datosSrv: DatosService) { }
 
   // METODOS
   ngOnInit(): void {
-    // iniciar array de naves
-    this.datosSrv.getListaNaves();
+    if (this.datosSrv.arrayNaves.length) return;
+    
+    this.datosSrv.getListaNaves$().subscribe(
+      respuesta => {
+        this.datosSrv.arrayNaves = respuesta.results;
+        this.datosSrv.urlSiguiente = respuesta.next;
+        console.log(this.datosSrv.arrayNaves);
+      },
+      error => {
+        this.datosSrv.errorApi = 'ERROR API: ' + error.message;
+      },
+      () => {
+        console.log('HTTP request completed.')
+      }
 
-    // Suscribirse a la lista de naves, cada vez que exista un cambio, se añadirán los datos al array arrayNaves de datosSrv
-    this.datosSrv.getListaNaves$().subscribe(naves => {
-      this.datosSrv.arrayNaves.push(...naves.results);
-    })
+    );
+
+    console.log("Esto se ejecutará antes que el console log de arriba");
   }
 
+
 }
+

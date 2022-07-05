@@ -1,16 +1,18 @@
 <div class="container mt-3">
-    <h1>Listado de Naves:</h1>
-    <div #divListaNaves style='overflow-y: auto; '>
-        <span *ngFor="let nave of datosSrv.arrayNaves; index as i; ">
-
-            <div class="card mb-2">
-                <div class="card-body">
+    <span *ngFor="let nave of datosSrv.arrayNaves; index as i; ">
+        <div class="card mb-2">
+            <a [routerLink]="['/naves', datosSrv.getNaveId(nave.url) ]">
+                <div class="card-body ">
                     <h4 class="card-title">{{i+1}} - {{nave.name}}</h4>
                     <p class="card-text"> {{nave.model}}</p>
                 </div>
-            </div>
+            </a>
+        </div>
+    </span>
 
-        </span>
+    <div *ngIf="datosSrv.errorApi" class="alert alert-warning border-2 " role="alert">
+        {{errorApi}}
     </div>
-    <app-footer-naves></app-footer-naves>
+
+    <app-footer-naves *ngIf="!datosSrv.errorApi"></app-footer-naves>
 </div>

@@ -1,37 +1,53 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
 import { Observable, Subject } from 'rxjs';
+import { INave } from './modelos/if-nave';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatosService {
 
-  //PROPIEDADES
-  private naves$: Subject<any[]>;   // Creamos naves$ como un objeto OBSERVABLE
-  public arrayNaves: any[] = [];
+  //PROPIEDADES 
+  public arrayNaves: INave[] = [];
+  public datosNave: INave[] = [];
+
+  private arrNaves$ = new Subject<any[]>();   // Creamos arrNaves$ como un objeto OBSERVABLE. Emitirá evento
+  private datosNave$ = new Subject<INave[]>();   // Creamos datosNave$ como un objeto OBSERVABLE. Emitirá evento
+
+  public errorApi: string = '';
+  public urlSiguiente: string = '';
 
   //CONSTRUCTOR
-  constructor() {
-    this.naves$ = new Subject();
+  constructor(private http: HttpClient) {
+    this.arrNaves$ = new Subject();
   }
 
 
   //METODOS  
 
-  /**
-   * Listado de Naves
-   */
-  async getListaNaves(url?: string) {
+  getListaNaves$(url?: string): Observable<any> {
+    //Listado de Naves
     if (!url) url = 'http://swapi.dev/api/starships';
-    const respuesta = await fetch(url);
-    let ListadoNaves = await respuesta.json();
-    // console.log(ListadoNaves);
-    this.naves$.next(ListadoNaves);   // Dispara el aviso a los que estén subscritos a getListaNaves$ y les enviará el ListadoNaves
+    let resultado = this.http.get(url);
+    this.arrNaves$.next(this.arrayNaves);   // Emite arrNaves$
+    return (resultado);
   }
 
-  getListaNaves$(): Observable<any> {   // Creo el Observable para que se subscriban
-    return this.naves$.asObservable();
+  getNave$(id: number): Observable<any> {
+    //Datos Nave
+    let resultado = this.http.get('https://swapi.dev/api/starships/' + id);
+    this.datosNave$.next(this.datosNave);   // Emite datosNave$
+    return (resultado);
   }
+
+  getNaveId(url: string) {
+    // Devuelve el id de una nave
+    const auxArr: string[] = url.split("/");
+    let le = auxArr.length;
+    return (auxArr[le - 2]);
+  }
+
 
 
 }
