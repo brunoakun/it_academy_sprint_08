@@ -14,6 +14,10 @@ import { NaveDetallComponent } from './nave-detall/nave-detall.component';
 import { LoginComponent } from './login/login.component';
 
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SignupComponent } from './signup/signup.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,12 +26,14 @@ import { LoginComponent } from './login/login.component';
     NavesListComponent,
     FooterNavesComponent,
     NaveDetallComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [DatosService],
   bootstrap: [AppComponent]
