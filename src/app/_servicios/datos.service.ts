@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable, Subject } from 'rxjs';
-import { INave } from './modelos/if-nave';
+import { INave } from '../_modelos/if-nave';
 
 @Injectable({
   providedIn: 'root'

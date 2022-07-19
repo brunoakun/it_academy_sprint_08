@@ -1,8 +1,12 @@
-import { LoginService } from './../login.service';
+/**
+ * Validaciones custom
+ * Isma ItAcademy
+ */
+import { LoginService } from '../_servicios/login.service';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-export default class Validation { 
+export default class Validation {
   static loginSrv: LoginService;
-  
+
   static match(controlName: string, checkControlName: string): ValidatorFn {
     return (controls: AbstractControl) => {
       const control = controls.get(controlName);
@@ -40,8 +44,8 @@ export default class Validation {
   }
 
   //static ageValidator(control: AbstractControl): { [key: string]: boolean } | null {
-    static ageValidator(control: AbstractControl) {
-      //  alert(control.value)
+  static ageValidator(control: AbstractControl) {
+    //  alert(control.value)
     if (control.value === '') {
       return null;
     }
@@ -51,15 +55,16 @@ export default class Validation {
     return null;
   }
 
-  static usrExiste(control: AbstractControl)   {
-  if (control.value === '') {
+  static usrExiste(control: AbstractControl) {
+    if(control) console.log( control.value);
+    if (control.value === '') {
+      return null;
+    }
+    if (this.loginSrv.existeUsr(control.value)) {
+      return { yaExiste: true };
+    }
     return null;
   }
-  if (this.loginSrv.existeUsr(control.value)) {
-    return { usrExiste: true };
-  }
-  return null;
-}
 
 
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DatosService } from '../datos.service';
-import { checkIfImageExists } from '../funciones/checkIfImageExists'
-import { INave } from '../modelos/if-nave';
+import { DatosService } from '../_servicios/datos.service';
+import { checkIfImageExists } from '../_funciones/checkIfImageExists'
+import { INave } from '../_modelos/if-nave';
 
 @Component({
   selector: 'app-nave-detall',

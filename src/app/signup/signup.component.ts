@@ -1,8 +1,11 @@
+/**
+ * Formulario de registro
+ */
+import { LoginService } from './../_servicios/login.service';
 import { Component, OnInit } from '@angular/core';
-import { Validators, UntypedFormBuilder } from '@angular/forms';
-import Validation from '../funciones/CustomValidators';
-import { LoginService } from '../login.service';
-import { IUser } from '../modelos/user';
+import { Validators, UntypedFormBuilder, ValidatorFn, AbstractControl } from '@angular/forms';
+import Validation from '../_funciones/CustomValidators';
+import { IUser } from '../_modelos/user';
 
 @Component({
   selector: 'app-signup',
@@ -40,13 +43,18 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
-    alert("onSubmit");
+   // alert("onSubmit");
     this.submitted = true;
     if (this.registroForm.invalid) {
       return;
     }
     console.log(this.registroForm.value);
-    alert('Valido');
+
+    if (this.loginSrv.existeUsr(this.registroForm.value.email)) {
+      this.registroForm.value.email.invalid;
+      alert('Este usuario ya existe');
+      return;
+    };
   }
 
 

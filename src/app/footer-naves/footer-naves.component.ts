@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { interval, take, finalize } from 'rxjs';
-import { DatosService } from '../datos.service';
+import { DatosService } from '../_servicios/datos.service';
 
 @Component({
   selector: 'app-footer-naves',

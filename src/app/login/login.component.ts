@@ -1,8 +1,12 @@
-import { IUser } from './../modelos/user';
-import { LoginService } from './../login.service';
+/**
+ * Formulario de LogIn
+ */
+import { Router } from '@angular/router';
+import { IUser } from '../_modelos/user';
+import { LoginService } from '../_servicios/login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, UntypedFormBuilder, Validators } from '@angular/forms';
-import Validation from '../funciones/CustomValidators';
+import Validation from '../_funciones/CustomValidators';
 
 @Component({
   selector: 'app-login',
@@ -21,18 +25,15 @@ export class LoginComponent implements OnInit {
   loginForm = this.fb.group({
     //  email: ['', [Validators.required, Validators.email]],
     email: ['', Validators.required],
-    password: ['', [Validators.required]],
-
-    url: ['', [Validators.required, Validation.urlValidator]],
+    password: ['', [Validators.required]]
   });
 
   // Constructor
   constructor(
-    private loginSrv: LoginService,
+    private ruta: Router,
+    public loginSrv: LoginService,
     private fb: UntypedFormBuilder
   ) { }
-
-
 
 
   // Métodos
@@ -40,8 +41,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    //   alert("onSubmit");
     this.submitted = true;
+    this.loginSrv.errorStr = '';
     if (this.loginForm.invalid) {
       return;
     }
