@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DatosService } from '../_servicios/datos.service';
 import { checkIfImageExists } from '../_funciones/checkIfImageExists'
 import { INave } from '../_modelos/if-nave';
+import { LoginService } from '../_servicios/login.service';
 
 @Component({
   selector: 'app-nave-detall',
@@ -44,11 +45,20 @@ export class NaveDetallComponent implements OnInit {
   // CONSTRUCTOR
   constructor(
     public datosSrv: DatosService,
-    private rutaActiva: ActivatedRoute) {     }
+    private rutaActiva: ActivatedRoute,
+    public loginSrv: LoginService,
+    private router: Router
+  ) { }
 
 
   // METODOS
   ngOnInit(): void {
+
+    if (!this.loginSrv.usrLogin.email) {
+      this.loginSrv.errorStr = "No tienes acceso";
+      this.router.navigate(['/login'])
+    }
+
     this.auxId = Number(this.rutaActiva.snapshot.paramMap.get('id'));
     this.auxFoto = `https://starwars-visualguide.com/assets/img/starships/${this.auxId}.jpg`;
 

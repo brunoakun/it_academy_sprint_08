@@ -10,6 +10,8 @@ import { IUser } from '../_modelos/user';
 export class LoginService {
 
   public errorStr = '';
+  public messageStr = '';
+
   usrLogin: IUser = {
     email: '',
     password: ''
@@ -38,17 +40,14 @@ export class LoginService {
 
   existeUsr(nombre: string): boolean {
     var existe = false;
-    alert('nombre:' + nombre);
     if (localStorage.getItem(nombre)) existe = true;
     return existe;
   }
 
   addUsr(usr: IUser) {
-    alert(usr.email);
+    alert("addUsr" + usr.email);
     localStorage.setItem(usr.email, JSON.stringify(usr));
   };
-
+  
 
 }
-
-

@@ -1,11 +1,13 @@
 /**
  * Formulario de registro
  */
-import { LoginService } from './../_servicios/login.service';
+import { Route, Router } from '@angular/router';
+
+import { LoginService } from '../../_servicios/login.service';
 import { Component, OnInit } from '@angular/core';
 import { Validators, UntypedFormBuilder, ValidatorFn, AbstractControl } from '@angular/forms';
-import Validation from '../_funciones/CustomValidators';
-import { IUser } from '../_modelos/user';
+import Validation from '../../_funciones/CustomValidators';
+import { IUser } from '../../_modelos/user';
 
 @Component({
   selector: 'app-signup',
@@ -31,30 +33,44 @@ export class SignupComponent implements OnInit {
     }
   );
 
+
   // Constructor
   constructor(
-    private loginSrv: LoginService,
-    private fb: UntypedFormBuilder
+    public loginSrv: LoginService,
+    private fb: UntypedFormBuilder,
+    private router: Router
   ) { }
 
 
   // Métodos
   ngOnInit(): void {
+    this.loginSrv.errorStr = '';
   }
 
   onSubmit() {
-   // alert("onSubmit");
+    // alert("onSubmit");
     this.submitted = true;
     if (this.registroForm.invalid) {
       return;
     }
-    console.log(this.registroForm.value);
 
     if (this.loginSrv.existeUsr(this.registroForm.value.email)) {
       this.registroForm.value.email.invalid;
-      alert('Este usuario ya existe');
+      this.loginSrv.errorStr = 'Este usuario ya existe';
       return;
     };
+
+    console.log(this.registroForm.value);
+    alert("valido" + JSON.stringify(this.registroForm.value));
+    this.usr.email = this.registroForm.value.email;
+    this.usr.password = this.registroForm.value.password;
+    this.loginSrv.addUsr(this.usr);
+    
+    this.loginSrv.errorStr = '';
+    this.loginSrv.messageStr = 'Usuario creado :-)';
+    this.router.navigate(['/login'])
+
+
   }
 
 

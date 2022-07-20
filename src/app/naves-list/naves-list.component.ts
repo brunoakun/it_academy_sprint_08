@@ -1,5 +1,8 @@
+import { LogoutComponent } from './../auth/logout/logout.component';
+import { LoginService } from '../_servicios/login.service';
 import { DatosService } from '../_servicios/datos.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-naves-list',
@@ -12,12 +15,21 @@ export class NavesListComponent implements OnInit {
 
 
   // CONSTRUCTOR
-  constructor(public datosSrv: DatosService) { }
+  constructor(
+    public datosSrv: DatosService,
+    public loginSrv: LoginService,
+    private router: Router
+  ) { }
 
   // METODOS
   ngOnInit(): void {
+    if (!this.loginSrv.usrLogin.email) {
+      this.loginSrv.errorStr = "No tienes acceso";
+      this.router.navigate(['/login'])
+    }
+
     if (this.datosSrv.arrayNaves.length) return;
-    
+
     this.datosSrv.getListaNaves$().subscribe(
       respuesta => {
         this.datosSrv.arrayNaves = respuesta.results;

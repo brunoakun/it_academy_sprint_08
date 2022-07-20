@@ -13,20 +13,20 @@
             </div>
 
 
-            <div *ngIf="loginSrv.usrLogin" class="col">
+            <div *ngIf="loginSrv.usrLogin.email" class="col">
                 <div class="d-flex flex-row-reverse mt-2">
                     <ul class="navbar-nav ">
-                        <li class="nav-item">
-                            <h2>{{loginSrv.usrLogin.email}}</h2>
+                        <li class="nav-item text-warning pe-4">
+                            <h2>Usuario: {{loginSrv.usrLogin.email}}</h2>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/logOut">log Out</a>
+                            <a class="nav-link" href="/logout">log Out</a>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <div *ngIf="!loginSrv.usrLogin" class="col">
+            <div *ngIf="!loginSrv.usrLogin.email" class="col">
                 <div class="d-flex flex-row-reverse mt-2">
                     <ul class="navbar-nav ">
                         <li class="nav-item">

@@ -11,11 +11,12 @@ import { FooterNavesComponent } from './footer-naves/footer-naves.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { NaveDetallComponent } from './nave-detall/nave-detall.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './auth/login/login.component';
 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SignupComponent } from './signup/signup.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { LogoutComponent } from './auth/logout/logout.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { SignupComponent } from './signup/signup.component';
     FooterNavesComponent,
     NaveDetallComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

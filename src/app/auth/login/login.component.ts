@@ -2,11 +2,11 @@
  * Formulario de LogIn
  */
 import { Router } from '@angular/router';
-import { IUser } from '../_modelos/user';
-import { LoginService } from '../_servicios/login.service';
+import { IUser } from '../../_modelos/user';
+import { LoginService } from '../../_servicios/login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, UntypedFormBuilder, Validators } from '@angular/forms';
-import Validation from '../_funciones/CustomValidators';
+import Validation from '../../_funciones/CustomValidators';
 
 @Component({
   selector: 'app-login',
@@ -32,23 +32,29 @@ export class LoginComponent implements OnInit {
   constructor(
     private ruta: Router,
     public loginSrv: LoginService,
-    private fb: UntypedFormBuilder
+    private fb: UntypedFormBuilder,
+    private router: Router
   ) { }
 
 
   // Métodos
   ngOnInit(): void {
+    
   }
 
   onSubmit() {
     this.submitted = true;
     this.loginSrv.errorStr = '';
+    this.loginSrv.messageStr = '';
+    
     if (this.loginForm.invalid) {
       return;
     }
     console.log(this.loginForm.value);
     this.usr = this.loginForm.value;
     this.loginSrv.logIn(this.usr);
+    
+    this.router.navigate(['/'])
   }
 
 

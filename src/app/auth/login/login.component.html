@@ -7,6 +7,9 @@
             <div *ngIf="loginSrv.errorStr" class="alert alert-danger border-2 " role="alert">
                 {{loginSrv.errorStr}}
             </div>
+            <div *ngIf="loginSrv.messageStr" class="alert alert-success border-2 " role="alert">
+                {{loginSrv.messageStr}}
+            </div>
 
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="rounded border border-2 border-primary">
 
@@ -34,6 +37,8 @@
                 </div>
 
             </form>
+
+           
 
         </div>
     </div>
