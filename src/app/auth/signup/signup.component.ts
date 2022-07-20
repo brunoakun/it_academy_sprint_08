@@ -61,7 +61,7 @@ export class SignupComponent implements OnInit {
     };
 
     console.log(this.registroForm.value);
-    alert("valido" + JSON.stringify(this.registroForm.value));
+   // alert("valido" + JSON.stringify(this.registroForm.value));
     this.usr.email = this.registroForm.value.email;
     this.usr.password = this.registroForm.value.password;
     this.loginSrv.addUsr(this.usr);

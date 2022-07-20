@@ -54,8 +54,8 @@ export class NaveDetallComponent implements OnInit {
   // METODOS
   ngOnInit(): void {
 
-    if (!this.loginSrv.usrLogin.email) {
-      this.loginSrv.errorStr = "No tienes acceso";
+    if (!this.loginSrv.logeado) {
+      this.loginSrv.errorStr = "No tienes acceso :-(";
       this.router.navigate(['/login'])
     }
 

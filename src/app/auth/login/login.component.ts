@@ -39,22 +39,22 @@ export class LoginComponent implements OnInit {
 
   // Métodos
   ngOnInit(): void {
-    
+
   }
 
   onSubmit() {
     this.submitted = true;
     this.loginSrv.errorStr = '';
     this.loginSrv.messageStr = '';
-    
+
     if (this.loginForm.invalid) {
       return;
     }
     console.log(this.loginForm.value);
     this.usr = this.loginForm.value;
     this.loginSrv.logIn(this.usr);
-    
-    this.router.navigate(['/'])
+
+    if (this.loginSrv.logeado) this.router.navigate(['/'])
   }
 
 

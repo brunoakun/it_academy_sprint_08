@@ -11,6 +11,7 @@ export class LoginService {
 
   public errorStr = '';
   public messageStr = '';
+  public logeado: boolean = false;
 
   usrLogin: IUser = {
     email: '',
@@ -35,6 +36,8 @@ export class LoginService {
       this.errorStr = 'Password INCORRECTO';
       return
     }
+    
+    this.logeado = true;
   }
 
 
@@ -45,9 +48,8 @@ export class LoginService {
   }
 
   addUsr(usr: IUser) {
-    alert("addUsr" + usr.email);
     localStorage.setItem(usr.email, JSON.stringify(usr));
   };
-  
+
 
 }
